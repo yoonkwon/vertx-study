@@ -16,6 +16,7 @@ repositories {
 
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 dependencies {
     compile "io.vertx:vertx-unit:$vertxVersion"
@@ -23,6 +24,12 @@ dependencies {
     compile "io.vertx:vertx-mongo-client:$vertxVersion"
     compile "io.vertx:vertx-redis-client:$vertxVersion"
     compile "io.vertx:vertx-lang-groovy:$vertxVersion"
+    compile "io.vertx:vertx-hazelcast:$vertxVersion"
+    compile "org.codehaus.groovy:groovy-all:2.5.0"
+    compile 'org.slf4j:slf4j-api:1.7.20'
+    compile 'org.projectlombok:lombok:1.16.20'
+    compile 'joda-time:joda-time:2.9.9'
+
 }
 
 mainClassName = 'com.kwonyoon.vertx-study.MainVerticle'
