@@ -9,9 +9,8 @@ ext {
 }
 
 repositories {
-    mavenLocal()
+    mavenCentral()
     jcenter()
-    maven { url "https://plugins.gradle.org/m2/" }
 }
 
 version = '1.0.0-SNAPSHOT'
@@ -19,22 +18,25 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 dependencies {
-    compile "io.vertx:vertx-unit:$vertxVersion"
     compile "io.vertx:vertx-core:$vertxVersion"
     compile "io.vertx:vertx-mongo-client:$vertxVersion"
     compile "io.vertx:vertx-redis-client:$vertxVersion"
     compile "io.vertx:vertx-lang-groovy:$vertxVersion"
     compile "io.vertx:vertx-hazelcast:$vertxVersion"
     compile "org.codehaus.groovy:groovy-all:2.5.0"
-    compile 'org.slf4j:slf4j-simple:1.7.20'
+    compile 'org.slf4j:slf4j-api:1.7.20'
     compile 'org.projectlombok:lombok:1.16.20'
     compile 'joda-time:joda-time:2.9.9'
-
+    compile ('ch.qos.logback:logback-classic:1.2.3'){
+        exclude group: 'org.slf4j'
+        exclude group: 'log4j'
+    }
+    testCompile "io.vertx:vertx-unit:$vertxVersion"
 }
 
 mainClassName = 'Main'
 applicationDefaultJvmArgs = [
-  "-Dlogback.configurationFile=logback.xml"
+  "-Dlogback.configurationFile=/resources/logback.xml"
 ]
 
 task wrapper(type: Wrapper) {
