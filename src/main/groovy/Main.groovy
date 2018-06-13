@@ -21,7 +21,7 @@ class Main {
             .setConfig(config)
             .setInstances(1)
             .setWorker(true)
-            .setMaxWorkerExecuteTime(MAX_WORKER_EXEC_TIME_SEC * 1000 * 1000)
+
         Vertx.clusteredVertx(options, { res->
             if(res.succeeded()){
                 def vertx = res.result()

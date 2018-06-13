@@ -10,7 +10,11 @@ class StandardVerticle extends AbstractVerticle {
     void start() throws Exception {
         log.info "starting StandardVerticle"
 
-        startPeriodicSend(SEND_PERIOD)
+        vertx.eventBus().send('worker.add', System.currentTimeMillis()+"")
+        vertx.setTimer(6000, {
+            vertx.eventBus().send('worker.add', ""+System.currentTimeMillis())
+        })
+//        startPeriodicSend(SEND_PERIOD)
         vertx.eventBus().consumer("standard.callback", {msg->
             def timestamp = msg.body() as Long
             def now = System.currentTimeMillis()
